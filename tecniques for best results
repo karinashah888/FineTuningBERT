@@ -1,0 +1,72 @@
+Techniques Used to Achieve Best Results
+🔍 Model and Tokenization
+Pretrained Model: bert-base-uncased from Hugging Face Transformers.
+
+Tokenization: Used Hugging Face AutoTokenizer, with truncation and padding.
+
+Sequence Length: max_length = 512 tokens to preserve as much context as possible.
+
+🧹 Data Preparation
+Dataset: IMDb movie reviews via Hugging Face datasets library.
+
+Sampled Dataset: Used 5000 samples for faster iteration.
+
+Train/Validation Split: 90/10 split from the training data.
+
+Label Format: Binary classification (Positive/Negative).
+
+⚙️ Training Configuration
+Trainer API: Hugging Face Trainer with TrainingArguments.
+
+Batch Size: 16 for training and evaluation.
+
+Epochs: 3 full passes through the dataset.
+
+Optimizer Settings:
+
+learning_rate = 2e-5
+
+weight_decay = 0.01
+
+warmup_steps = 500 for gradual learning rate ramp-up.
+
+Early Stopping: Implemented via EarlyStoppingCallback (patience = 3).
+
+Evaluation Strategy: Evaluated and saved model every 500 steps.
+
+Best Model Tracking: Based on highest validation F1-score.
+
+📉 Performance Debugging
+Included a debug_model_performance() function:
+
+Evaluates model quality on validation set.
+
+Checks for overfitting by comparing training and validation accuracy.
+
+Prints targeted suggestions for low (< 0.85) validation accuracy:
+
+Tune learning rate, model architecture.
+
+Augment data or adjust batch size.
+
+Use dropout or regularization if overfitting is detected.
+
+🎨 Creative Application
+Sentiment prediction on custom examples using .predict_sentiment().
+
+Confidence scores included in output.
+
+Display of real-world use cases.
+
+📈 Visualization
+Training Loss & Validation Loss curves.
+
+Validation F1-score trends during training.
+
+Confusion Matrix plot for test set.
+
+🛠 Advanced Utilities (Optional)
+Data Augmentation Stub: Synonym replacement placeholder.
+
+Model Ensemble Support: Averaging predictions from multiple models.
+
